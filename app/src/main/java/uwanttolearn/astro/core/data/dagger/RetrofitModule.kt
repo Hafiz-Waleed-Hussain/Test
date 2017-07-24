@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
@@ -38,6 +40,13 @@ class RetrofitModule(val baseUrl: String) {
     @Provides
     @ApplicationScope
     fun httpLoggingInterceptor() =
-            HttpLoggingInterceptor({ Timber.i(it) })
+            HttpLoggingInterceptor({
+                try {
+                    var jsonObject = JSONObject(it.toString())
+                    Timber.i(jsonObject.toString(4))
+                }catch (e:Exception){
+                    Timber.i(it)
+                }
+            }).setLevel(HttpLoggingInterceptor.Level.BODY)
 
 }

@@ -6,6 +6,8 @@ import uwanttolearn.astro.app.dagger.AppModule
 import uwanttolearn.astro.app.dagger.DaggerAppComponent
 import com.uwanttolearn.datamodule.dagger.AstroNetworkModule
 import com.uwanttolearn.datamodule.dagger.RetrofitModule
+import timber.log.Timber
+import uwanttolearn.astro.BuildConfig
 
 /**
  * Created by waleed on 24/07/2017.
@@ -23,7 +25,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         app = this
-       appComponent = DaggerAppComponent.builder()
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+        appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule())
                 .astroNetworkModule(AstroNetworkModule())
                 .retrofitModule(RetrofitModule("http://ams-api.astro.com.my/ams/v3/"))
