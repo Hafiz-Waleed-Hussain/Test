@@ -24,7 +24,6 @@ class HomeFragment : AstroFragment() {
 
 
         activity.setSupportActionBar(HomeFeatureFragment_toolbar)
-
         HomeFeatureFragment_navigation_view.setCheckedItem(R.id.HomeFeature_Nav_sort_by_number)
         HomeFeatureFragment_navigation_view.setNavigationItemSelectedListener {
             Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
@@ -40,15 +39,13 @@ class HomeFragment : AstroFragment() {
         inflater?.inflate(R.menu.home_feature, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.HomeFeatureMenu_sort -> {
-                HomeFeatureFragment_drawer_layout.openDrawer(Gravity.RIGHT, true)
-                true
-            }
-            else ->
-                super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem?) = when (item?.itemId) {
+        R.id.HomeFeatureMenu_sort -> {
+            HomeFeatureFragment_drawer_layout.openDrawer(Gravity.RIGHT, true)
+            true
         }
+        else ->
+            super.onOptionsItemSelected(item)
     }
 
 }

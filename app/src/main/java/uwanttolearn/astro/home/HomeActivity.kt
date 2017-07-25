@@ -2,7 +2,6 @@ package uwanttolearn.astro.home
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,7 +12,8 @@ import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
 import uwanttolearn.astro.home.dagger.DaggerHomeActivityComponent
 import uwanttolearn.astro.home.dagger.HomeActivityModule
-import uwanttolearn.astro.home.favourites.FavouritesFragment
+import uwanttolearn.astro.favourites.FavouritesFragment
+import uwanttolearn.astro.home.adapter.HomeViewPagerAdapter
 import uwanttolearn.astro.home_feature.HomeFragment
 import javax.inject.Inject
 
@@ -21,6 +21,8 @@ class HomeActivity : AstroActivity() {
 
     @Inject
     lateinit var astroRepository: AstroRepositoryDataSource
+    @Inject
+    lateinit var pagerAdapter: HomeViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,20 +30,21 @@ class HomeActivity : AstroActivity() {
 
         DaggerHomeActivityComponent.builder()
                 .appComponent(App.app.appComponent)
-                .homeActivityModule(HomeActivityModule())
+                .homeActivityModule(HomeActivityModule(this, supportFragmentManager))
                 .build().inject(this)
 
-        replaceFragment(HomeFragment())
+
+        HomeActivity_view_pager.offscreenPageLimit = 3
+        HomeActivity_view_pager.adapter = pagerAdapter
 
         HomeActivity_bottom_navigation_view.setOnNavigationItemSelectedListener {
-            var fragment = when (it.itemId) {
-                R.id.home_tab -> HomeFragment()
-                R.id.tv_guide_tab -> FavouritesFragment()
-                R.id.favourite_tab -> HomeFragment()
-                else -> Fragment()
-            }
+            HomeActivity_view_pager.setCurrentItem(when (it.itemId) {
+                R.id.home_tab -> 0
+                R.id.tv_guide_tab -> 1
+                R.id.favourite_tab -> 2
+                else -> 0
+            }, true)
 
-            replaceFragment(fragment)
             true
         }
 
@@ -57,9 +60,5 @@ class HomeActivity : AstroActivity() {
 
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.HomeActivity_frame_layout, fragment)
-                .commit()
-    }
+
 }

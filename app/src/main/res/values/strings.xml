@@ -6,4 +6,6 @@
     <string name="sort_channel_by">Sort Channel By</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="home">Home</string>
+    <string name="tv_guide">Tv Guide</string>
 </resources>

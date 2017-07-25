@@ -1,4 +1,4 @@
-package uwanttolearn.astro.home.favourites
+package uwanttolearn.astro.favourites
 
 import android.os.Bundle
 import android.view.LayoutInflater
