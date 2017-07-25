@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Astro</string>
+    <string name="number">Number</string>
+    <string name="name">Name</string>
+    <string name="favourite">Favourite</string>
+    <string name="sort_channel_by">Sort Channel By</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
