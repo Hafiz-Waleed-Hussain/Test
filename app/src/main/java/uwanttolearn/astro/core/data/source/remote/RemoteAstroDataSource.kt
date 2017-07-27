@@ -12,5 +12,6 @@ internal class RemoteAstroDataSource(val astroAppService: AstroAppService) : Ast
 
     override fun getAllChannelsWithMinimalData(): Observable<ChannelLists> = astroAppService.getAllChannels()
 
+    override fun getAllChannelsWithMetaData(): Observable<ChannelLists> = astroAppService.getAllChannelsWithMetaData()
 
 }

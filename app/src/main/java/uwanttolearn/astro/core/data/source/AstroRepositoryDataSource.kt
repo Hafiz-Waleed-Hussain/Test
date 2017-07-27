@@ -9,4 +9,6 @@ import uwanttolearn.astro.core.data.json.ChannelLists
 interface AstroRepositoryDataSource {
 
     fun getAllChannelsWithMinimalData(): Observable<ChannelLists>
+
+    fun getAllChannelsWithMetaData(): Observable<ChannelLists>
 }

@@ -14,5 +14,4 @@ interface AppComponent {
 
     fun astroRepositoryDataSource(): AstroRepositoryDataSource
 
-    fun channelsRepositoryDataSource(): ChannelsDataSource
 }

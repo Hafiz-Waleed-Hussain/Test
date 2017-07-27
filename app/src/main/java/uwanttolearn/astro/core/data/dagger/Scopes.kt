@@ -12,6 +12,10 @@ annotation class ApplicationScope
 
 @Scope
 @Retention(AnnotationRetention.BINARY)
+annotation class ApplicationScopeWithNewCreation
+
+@Scope
+@Retention(AnnotationRetention.BINARY)
 annotation class ActivityScope
 
 @Scope

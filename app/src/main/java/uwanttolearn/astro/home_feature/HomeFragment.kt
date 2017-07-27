@@ -6,11 +6,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Toast
 import io.realm.RealmResults
+import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.fragment_home.*
 import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
 import uwanttolearn.astro.core.abstracts.AstroFragment
 import uwanttolearn.astro.core.data.pojos.ChannelInfo
+import uwanttolearn.astro.core.data.source.ChannelsDataSource
+import uwanttolearn.astro.core.data.source.local.ChannelsLocalDataSource
 import uwanttolearn.astro.databinding.FragmentHomeBinding
 import uwanttolearn.astro.home_feature.adapter.HomeAdapter
 import uwanttolearn.astro.home_feature.dagger.DaggerHomeFragmentComponent
@@ -56,7 +59,13 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
         activity.setSupportActionBar(HomeFeatureFragment_toolbar)
         binding.HomeFeatureFragmentNavigationView.setCheckedItem(R.id.HomeFeature_Nav_sort_by_number)
         binding.HomeFeatureFragmentNavigationView.setNavigationItemSelectedListener {
-            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+            viewModel.sortDataBy(when (it.title) {
+                getString(R.string.number) -> "channelId"
+                getString(R.string.name) -> "channelTitle"
+                getString(R.string.favourite) -> "channelId"
+                else -> "channelId"
+            }
+            )
             binding.HomeFeatureFragmentDrawerLayout.closeDrawer(Gravity.RIGHT)
             true
         }
@@ -88,6 +97,14 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
 
     override fun addData(allChannelsInfo: RealmResults<ChannelInfo>?) {
         adapter.addData(allChannelsInfo!!)
+    }
+
+    override fun notifyDataChanged() {
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun resetAdapter() {
+        adapter.reset()
     }
 
 

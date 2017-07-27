@@ -10,7 +10,6 @@ import uwanttolearn.astro.core.data.json.ChannelLists
  * Created by waleed on 24/07/2017.
  */
 object AstroRepository : AstroRepositoryDataSource {
-
     private lateinit var remoteAstroDataSource: AstroRepositoryDataSource
     private var astroRepository: AstroRepository? = null
 
@@ -25,6 +24,8 @@ object AstroRepository : AstroRepositoryDataSource {
 
 
     override fun getAllChannelsWithMinimalData(): Observable<ChannelLists> = remoteAstroDataSource.getAllChannelsWithMinimalData()
+
+    override fun getAllChannelsWithMetaData(): Observable<ChannelLists> = remoteAstroDataSource.getAllChannelsWithMetaData()
 
 
 }
