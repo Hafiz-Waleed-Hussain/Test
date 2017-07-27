@@ -48,14 +48,6 @@ class HomeActivity : AstroActivity() {
             true
         }
 
-        astroRepository
-                .getAllChannels()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { Timber.i(it.toString()) },
-                        { Timber.i(it.message) }
-                )
 
 
     }

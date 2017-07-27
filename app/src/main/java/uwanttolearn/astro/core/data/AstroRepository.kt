@@ -4,6 +4,7 @@ import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
 import uwanttolearn.astro.core.data.source.remote.RemoteAstroDataSource
 import com.uwanttolearn.datamodule.network.AstroAppService
 import io.reactivex.Observable
+import uwanttolearn.astro.core.data.json.ChannelLists
 
 /**
  * Created by waleed on 24/07/2017.
@@ -23,7 +24,7 @@ object AstroRepository : AstroRepositoryDataSource {
     }
 
 
-    override fun getAllChannels(): Observable<Any> = remoteAstroDataSource.getAllChannels()
+    override fun getAllChannelsWithMinimalData(): Observable<ChannelLists> = remoteAstroDataSource.getAllChannelsWithMinimalData()
 
 
 }

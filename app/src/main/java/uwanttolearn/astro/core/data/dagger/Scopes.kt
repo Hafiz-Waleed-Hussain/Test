@@ -13,3 +13,11 @@ annotation class ApplicationScope
 @Scope
 @Retention(AnnotationRetention.BINARY)
 annotation class ActivityScope
+
+@Scope
+@Retention(AnnotationRetention.BINARY)
+annotation class IntentServiceScope
+
+@Scope
+@Retention(AnnotationRetention.BINARY)
+annotation class FragmentScope
