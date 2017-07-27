@@ -12,6 +12,7 @@ import uwanttolearn.astro.core.data.source.ChannelsDataSource
 import uwanttolearn.astro.core.data.source.services.channel_data.dagger.DaggerChannlesDataServiceComponent
 import javax.inject.Inject
 
+
 /**
  * Created by waleed on 26/07/2017.
  */
@@ -47,8 +48,15 @@ class ChannelsDataService : IntentService("ChannelsDataService") {
                                     }
                             handler.post {
                                 channelsRepository.executeTransaction(Realm.Transaction {
-                                    it.copyToRealmOrUpdate(data)
-                                    Timber.i(Thread.currentThread().name)
+                                    for (channelInfo in data) {
+                                        val findFirst = it.where(ChannelInfo::class.java).equalTo("channelId", channelInfo.channelId).findFirst()
+                                        if (findFirst == null) {
+                                            it.insertOrUpdate(channelInfo)
+                                        } else {
+                                            channelInfo.isSave = findFirst.isSave
+                                            it.insertOrUpdate(channelInfo)
+                                        }
+                                    }
                                 })
                             }
                         },
@@ -67,8 +75,17 @@ class ChannelsDataService : IntentService("ChannelsDataService") {
 
                     handler.post {
                         channelsRepository.executeTransaction(Realm.Transaction {
-                            it.copyToRealmOrUpdate(data)
-                            Timber.i(Thread.currentThread().name)
+
+                            for (channelInfo in data) {
+                                val findFirst = it.where(ChannelInfo::class.java).equalTo("channelId", channelInfo.channelId).findFirst()
+                                if (findFirst == null) {
+                                    it.insertOrUpdate(channelInfo)
+                                } else {
+                                    channelInfo.isSave = findFirst.isSave
+                                    it.insertOrUpdate(channelInfo)
+                                }
+                            }
+
                         })
                     }
                 })

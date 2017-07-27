@@ -2,6 +2,7 @@ package uwanttolearn.astro.home_feature
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.Toast
@@ -33,6 +34,8 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
     lateinit var adapter: HomeAdapter
     @Inject
     lateinit var viewModel: HomeViewModel
+    @Inject
+    lateinit var handler: Handler
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
@@ -45,6 +48,9 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
 
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
+        adapter.saveClickObservable().subscribe {
+            viewModel.saveClick(it)
+        }
 
         binding.viewModel = viewModel
         viewModel.onCreateView()
@@ -62,7 +68,7 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
             viewModel.sortDataBy(when (it.title) {
                 getString(R.string.number) -> "channelId"
                 getString(R.string.name) -> "channelTitle"
-                getString(R.string.favourite) -> "channelId"
+                getString(R.string.favourite) -> "isSave"
                 else -> "channelId"
             }
             )
@@ -100,11 +106,16 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
     }
 
     override fun notifyDataChanged() {
-        adapter.notifyDataSetChanged()
+
+        handler.post { adapter.notifyDataSetChanged() }
     }
 
     override fun resetAdapter() {
         adapter.reset()
+    }
+
+    override fun updateRowOnPosition(position: Int) {
+        handler.post { adapter.notifyItemChanged(position) }
     }
 
 

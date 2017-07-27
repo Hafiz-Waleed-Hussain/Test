@@ -41,7 +41,7 @@ class ChannelsLocalDataSource : ChannelsDataSource {
 
     override fun getAllChannelsInfo(filedName: String): RealmResults<ChannelInfo>? {
         checkIsRealmOpen()
-        return realm?.where(ChannelInfo::class.java)?.findAllSorted(filedName, Sort.ASCENDING)
+        return realm?.where(ChannelInfo::class.java)?.findAllSorted(filedName, if (filedName.equals("isSave")) Sort.DESCENDING else Sort.ASCENDING)
     }
 
     override fun reset() {

@@ -11,4 +11,4 @@ open class ChannelInfo(
         var channelTitle: String = "",
         var channelStbNumber: Int = -1,
         var url: String = "",
-        val isSave: Boolean = false) : RealmObject()
+        var isSave: Boolean = false) : RealmObject()

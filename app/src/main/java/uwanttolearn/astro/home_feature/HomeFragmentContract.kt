@@ -10,4 +10,5 @@ interface HomeFragmentContract {
     fun addData(allChannelsInfo: RealmResults<ChannelInfo>?)
     fun notifyDataChanged()
     fun resetAdapter()
+    fun updateRowOnPosition(position: Int)
 }

@@ -3,10 +3,7 @@ package uwanttolearn.astro.home_feature
 import android.databinding.BaseObservable
 import android.databinding.ObservableInt
 import android.view.View
-import io.realm.OrderedCollectionChangeSet
-import io.realm.OrderedRealmCollectionChangeListener
-import io.realm.RealmChangeListener
-import io.realm.RealmResults
+import io.realm.*
 import timber.log.Timber
 import uwanttolearn.astro.core.data.ChannelsRepository
 import uwanttolearn.astro.core.data.pojos.ChannelInfo
@@ -20,9 +17,11 @@ class HomeViewModel(val channelsRepository: ChannelsDataSource,
 
     private var allChannelsInfo: RealmResults<ChannelInfo>?
 
+    private var selectedSort: String = "channelId"
+
     init {
         channelsRepository.open()
-        allChannelsInfo = channelsRepository.getAllChannelsInfo("channelId")
+        allChannelsInfo = channelsRepository.getAllChannelsInfo(selectedSort)
     }
 
     val progressBarVisibilityHandler = ObservableInt(View.VISIBLE)
@@ -38,7 +37,23 @@ class HomeViewModel(val channelsRepository: ChannelsDataSource,
 
     private val listener = OrderedRealmCollectionChangeListener<RealmResults<ChannelInfo>> {
         realmResults: RealmResults<ChannelInfo>, orderedCollectionChangeSet: OrderedCollectionChangeSet ->
-        view.notifyDataChanged()
+
+        if (orderedCollectionChangeSet == null)
+            return@OrderedRealmCollectionChangeListener
+
+        if (orderedCollectionChangeSet.insertionRanges.size > 0) {
+            view.addData(realmResults)
+            view.notifyDataChanged()
+        }
+
+
+        if (orderedCollectionChangeSet.changes.size > 0) {
+            for (index in orderedCollectionChangeSet.changes) {
+                view.updateRowOnPosition(index)
+            }
+        }
+
+
     }
 
     fun onDestroyView() {
@@ -48,11 +63,21 @@ class HomeViewModel(val channelsRepository: ChannelsDataSource,
     }
 
     fun sortDataBy(title: CharSequence?) {
-
+        selectedSort = title.toString()
         view.resetAdapter()
         channelsRepository.reset()
-        allChannelsInfo = channelsRepository.getAllChannelsInfo(title.toString())
+        allChannelsInfo = channelsRepository.getAllChannelsInfo(selectedSort)
         onCreateView()
+    }
+
+    fun saveClick(pair: Pair<ChannelInfo, Boolean>) {
+        channelsRepository.executeTransaction(Realm.Transaction {
+            pair.first.isSave = pair.second
+            it.insertOrUpdate(pair.first)
+        })
+        if (selectedSort.equals("isSave"))
+            sortDataBy("isSave")
+
     }
 
 

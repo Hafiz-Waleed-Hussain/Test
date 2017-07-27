@@ -1,6 +1,7 @@
 package uwanttolearn.astro.home_feature.dagger
 
 import android.content.Context
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import dagger.Module
@@ -36,4 +37,8 @@ class HomeFragmentModule(val fragment: HomeFragment) {
     @Provides
     @FragmentScope
     fun channelsDataSource(): ChannelsDataSource = ChannelsRepository()
+
+    @Provides
+    @FragmentScope
+    fun handler() = Handler()
 }
