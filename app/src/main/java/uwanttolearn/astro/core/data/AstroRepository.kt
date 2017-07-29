@@ -5,11 +5,13 @@ import uwanttolearn.astro.core.data.source.remote.RemoteAstroDataSource
 import com.uwanttolearn.datamodule.network.AstroAppService
 import io.reactivex.Observable
 import uwanttolearn.astro.core.data.json.ChannelLists
+import uwanttolearn.astro.core.data.json.TVGuide
 
 /**
  * Created by waleed on 24/07/2017.
  */
 object AstroRepository : AstroRepositoryDataSource {
+
     private lateinit var remoteAstroDataSource: AstroRepositoryDataSource
     private var astroRepository: AstroRepository? = null
 
@@ -27,5 +29,6 @@ object AstroRepository : AstroRepositoryDataSource {
 
     override fun getAllChannelsWithMetaData(): Observable<ChannelLists> = remoteAstroDataSource.getAllChannelsWithMetaData()
 
+    override fun getTodayEvents(channelIds: List<String>): Observable<TVGuide> = remoteAstroDataSource.getTodayEvents(channelIds)
 
 }

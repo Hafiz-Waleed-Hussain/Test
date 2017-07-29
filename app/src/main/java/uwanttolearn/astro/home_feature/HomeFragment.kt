@@ -66,10 +66,10 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
         binding.HomeFeatureFragmentNavigationView.setCheckedItem(R.id.HomeFeature_Nav_sort_by_number)
         binding.HomeFeatureFragmentNavigationView.setNavigationItemSelectedListener {
             viewModel.sortDataBy(when (it.title) {
-                getString(R.string.number) -> "channelId"
+                getString(R.string.number) -> "channelStbNumber"
                 getString(R.string.name) -> "channelTitle"
                 getString(R.string.favourite) -> "isSave"
-                else -> "channelId"
+                else -> "channelStbNumber"
             }
             )
             binding.HomeFeatureFragmentDrawerLayout.closeDrawer(Gravity.RIGHT)

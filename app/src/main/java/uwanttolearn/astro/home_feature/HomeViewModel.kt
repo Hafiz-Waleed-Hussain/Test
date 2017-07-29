@@ -17,7 +17,7 @@ class HomeViewModel(val channelsRepository: ChannelsDataSource,
 
     private var allChannelsInfo: RealmResults<ChannelInfo>?
 
-    private var selectedSort: String = "channelId"
+    private var selectedSort: String = "channelStbNumber"
 
     init {
         channelsRepository.open()

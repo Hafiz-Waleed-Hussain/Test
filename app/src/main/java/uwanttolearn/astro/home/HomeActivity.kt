@@ -10,11 +10,14 @@ import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
 import timber.log.Timber
 import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
+import uwanttolearn.astro.core.data.pojos.TVGuideChannel
+import uwanttolearn.astro.core.data.pojos.TVGuideEvent
 import uwanttolearn.astro.home.dagger.DaggerHomeActivityComponent
 import uwanttolearn.astro.home.dagger.HomeActivityModule
 import uwanttolearn.astro.favourites.FavouritesFragment
 import uwanttolearn.astro.home.adapter.HomeViewPagerAdapter
 import uwanttolearn.astro.home_feature.HomeFragment
+import java.util.*
 import javax.inject.Inject
 
 class HomeActivity : AstroActivity() {
@@ -47,7 +50,6 @@ class HomeActivity : AstroActivity() {
 
             true
         }
-
 
 
     }

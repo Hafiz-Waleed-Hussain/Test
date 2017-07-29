@@ -66,7 +66,7 @@ class HomeViewHolder(val binding: RowHomeBinding) : RecyclerView.ViewHolder(bind
 class RowHomeViewModel(val channelInfo: ChannelInfo, val publishSubject : PublishSubject<Pair<ChannelInfo, Boolean>>) : BaseObservable() {
 
     var channelTitle = ObservableField<String>(channelInfo.channelTitle)
-    var channelNumber = ObservableInt(channelInfo.channelId)
+    var channelNumber = ObservableInt(channelInfo.channelStbNumber)
     var channelLogoUrl = ObservableField<String>(channelInfo.url)
     var channelIsSaved = ObservableBoolean(channelInfo.isSave)
 
