@@ -92,7 +92,8 @@ class ChannelsDataService : IntentService("ChannelsDataService") {
 
                         })
                     }
-                })
+                }, { Timber.i(it.message) }
+                )
 
         sendBroadcast(Intent(DOWNLOAD_COMPLETE))
     }

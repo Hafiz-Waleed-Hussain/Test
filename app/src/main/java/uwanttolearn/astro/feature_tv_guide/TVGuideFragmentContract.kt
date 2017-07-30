@@ -1,5 +1,6 @@
 package uwanttolearn.astro.feature_tv_guide
 
+import io.reactivex.Scheduler
 import uwanttolearn.astro.core.data.pojos.TVGuideChannel
 
 /**
@@ -10,5 +11,9 @@ interface TVGuideFragmentContract {
     fun downloadComplete()
     fun registerForDownloadCompleteReceiver()
     fun unregisterForDownloadCompleteReceiver()
+    fun showApiError(throwable: Throwable)
+    fun getIOScheduler(): Scheduler
+    fun getAndroidMainScheduler(): Scheduler
+    fun isNetworkAvailable(): Boolean
 
 }

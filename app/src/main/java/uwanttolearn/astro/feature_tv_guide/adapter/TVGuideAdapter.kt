@@ -86,6 +86,14 @@ class TVGuideAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         downloadStatus = TVGuideAdapter.DownloadingStatus.DOWNLOAD_COMPLETE
     }
 
+    fun lazyLoadingStopDueToNetwork() {
+        downloadStatus = DownloadingStatus.DOWNLOAD_INTERRUPTED_DUE_TO_INTERNET
+    }
+
+    fun lazyLoadingStartDueToNetworkBack() {
+        downloadStatus = DownloadingStatus.DOWNLOAD_MORE_DATA
+    }
+
 }
 
 

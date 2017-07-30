@@ -37,11 +37,14 @@ class MainActivity : AstroActivity() {
                 R.id.tv_guide_tab -> 1
                 else -> 0
             }, true)
-
             true
         }
+    }
 
+    override fun onInternetConnected() {
+    }
 
+    override fun onInternetDisconnected() {
     }
 
 

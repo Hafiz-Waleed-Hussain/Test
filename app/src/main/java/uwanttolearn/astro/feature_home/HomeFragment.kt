@@ -1,5 +1,6 @@
 package uwanttolearn.astro.feature_home
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
 import uwanttolearn.astro.core.abstracts.AstroFragment
 import uwanttolearn.astro.core.data.pojos.ChannelInfo
+import uwanttolearn.astro.core.data.source.services.channel_data.ChannelsDataService
 import uwanttolearn.astro.databinding.FragmentHomeBinding
 import uwanttolearn.astro.feature_home.adapter.HomeAdapter
 import uwanttolearn.astro.feature_home.dagger.DaggerHomeFragmentComponent
@@ -112,6 +114,14 @@ class HomeFragment : AstroFragment(), HomeFragmentContract {
 
     override fun updateRowOnPosition(position: Int) {
         handler.post { adapter.notifyItemChanged(position) }
+    }
+
+    override fun onInternetConnected() {
+        context.startService(Intent(context, ChannelsDataService::class.java))
+    }
+
+    override fun onInternetDisconnected() {
+
     }
 
 

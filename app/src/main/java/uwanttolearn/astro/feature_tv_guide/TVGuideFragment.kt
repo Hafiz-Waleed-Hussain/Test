@@ -86,9 +86,21 @@ class TVGuideFragment : AstroFragment(), TVGuideFragmentContract {
 
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
-            viewModel.dataDownloaded()
+            viewModel.channelsDataDownloaded()
         }
     }
+
+    override fun onInternetConnected() {
+        tvGuideAdapter.lazyLoadingStartDueToNetworkBack()
+        viewModel.internetConnected()
+    }
+
+    override fun onInternetDisconnected() {
+        tvGuideAdapter.lazyLoadingStopDueToNetwork()
+        viewModel.internetDisconnected()
+    }
+
+
 
 
 }

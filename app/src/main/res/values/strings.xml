@@ -8,4 +8,6 @@
     <string name="close">Close</string>
     <string name="home">Home</string>
     <string name="tv_guide">Tv Guide</string>
+    <string name="common_label_no_internet_connection">Network not available.</string>
+    <string name="common_message_error_server_not_responding">Server not responding.</string>
 </resources>
