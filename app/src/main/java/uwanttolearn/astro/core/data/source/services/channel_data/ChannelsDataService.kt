@@ -18,6 +18,10 @@ import javax.inject.Inject
  */
 class ChannelsDataService : IntentService("ChannelsDataService") {
 
+    companion object {
+        const val DOWNLOAD_COMPLETE = "DownloadComplete"
+    }
+
     @Inject
     lateinit var astroRepository: AstroRepositoryDataSource
     @Inject
@@ -89,6 +93,8 @@ class ChannelsDataService : IntentService("ChannelsDataService") {
                         })
                     }
                 })
+
+        sendBroadcast(Intent(DOWNLOAD_COMPLETE))
     }
 
     override fun onDestroy() {

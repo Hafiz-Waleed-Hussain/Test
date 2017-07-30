@@ -1,24 +1,20 @@
-package uwanttolearn.astro.home_feature
+package uwanttolearn.astro.feature_home
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.Toast
 import io.realm.RealmResults
-import io.realm.annotations.PrimaryKey
 import kotlinx.android.synthetic.main.fragment_home.*
 import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
 import uwanttolearn.astro.core.abstracts.AstroFragment
 import uwanttolearn.astro.core.data.pojos.ChannelInfo
-import uwanttolearn.astro.core.data.source.ChannelsDataSource
-import uwanttolearn.astro.core.data.source.local.ChannelsLocalDataSource
 import uwanttolearn.astro.databinding.FragmentHomeBinding
-import uwanttolearn.astro.home_feature.adapter.HomeAdapter
-import uwanttolearn.astro.home_feature.dagger.DaggerHomeFragmentComponent
-import uwanttolearn.astro.home_feature.dagger.HomeFragmentModule
+import uwanttolearn.astro.feature_home.adapter.HomeAdapter
+import uwanttolearn.astro.feature_home.dagger.DaggerHomeFragmentComponent
+import uwanttolearn.astro.feature_home.dagger.HomeFragmentModule
 import javax.inject.Inject
 
 /**

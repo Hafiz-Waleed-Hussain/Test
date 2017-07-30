@@ -1,4 +1,4 @@
-package uwanttolearn.astro.tv_guide.dagger
+package uwanttolearn.astro.feature_tv_guide.dagger
 
 import dagger.Component
 import uwanttolearn.astro.app.dagger.AppComponent

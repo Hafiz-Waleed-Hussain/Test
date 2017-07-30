@@ -1,4 +1,4 @@
-package uwanttolearn.astro.tv_guide.adapter.nested_adapter
+package uwanttolearn.astro.feature_tv_guide.adapter.nested_adapter
 
 import android.databinding.BaseObservable
 import android.databinding.DataBindingUtil
@@ -14,7 +14,7 @@ import java.util.*
 /**
  * Created by waleed on 29/07/2017.
  */
-class TVGuideHorizontalNestedAdapter(val events: MutableList<TVGuideEvent>) : RecyclerView.Adapter<TVGuideHorizontalNestedViewHolder>() {
+class TVGuideHorizontalNestedAdapter(var events: MutableList<TVGuideEvent>) : RecyclerView.Adapter<TVGuideHorizontalNestedViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) =
@@ -31,8 +31,7 @@ class TVGuideHorizontalNestedAdapter(val events: MutableList<TVGuideEvent>) : Re
     override fun getItemCount() = events.size
 
     fun reset(events: MutableList<TVGuideEvent>) {
-        this.events.clear()
-        this.events.addAll(events)
+        this.events = events
         notifyDataSetChanged()
     }
 

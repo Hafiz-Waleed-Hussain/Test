@@ -1,4 +1,4 @@
-package uwanttolearn.astro.tv_guide
+package uwanttolearn.astro.feature_tv_guide
 
 import uwanttolearn.astro.core.data.pojos.TVGuideChannel
 
@@ -8,5 +8,7 @@ import uwanttolearn.astro.core.data.pojos.TVGuideChannel
 interface TVGuideFragmentContract {
     fun addData(tvGuide: MutableList<TVGuideChannel>)
     fun downloadComplete()
+    fun registerForDownloadCompleteReceiver()
+    fun unregisterForDownloadCompleteReceiver()
 
 }

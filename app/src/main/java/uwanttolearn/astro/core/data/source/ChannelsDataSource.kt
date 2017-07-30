@@ -22,5 +22,8 @@ interface ChannelsDataSource {
     fun removeListener(channelInfo: MutableList<ChannelInfo>?, listener: OrderedRealmCollectionChangeListener<RealmResults<ChannelInfo>>)
 
     fun getAllChannelsInfo(filedName: String): RealmResults<ChannelInfo>?
+
+    fun getAllChannelNumbersCopy(): List<Int>?
+
     fun reset()
 }

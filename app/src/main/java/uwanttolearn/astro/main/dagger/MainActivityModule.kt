@@ -1,4 +1,4 @@
-package uwanttolearn.astro.home.dagger
+package uwanttolearn.astro.main.dagger
 
 import android.content.Context
 import android.support.v4.app.Fragment
@@ -7,26 +7,22 @@ import dagger.Module
 import dagger.Provides
 import uwanttolearn.astro.R
 import uwanttolearn.astro.core.data.dagger.ActivityScope
-import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
-import uwanttolearn.astro.favourites.FavouritesFragment
 import uwanttolearn.astro.favourites.TVGuideFragment
-import uwanttolearn.astro.home.HomeActivity
-import uwanttolearn.astro.home.adapter.HomeViewPagerAdapter
-import uwanttolearn.astro.home_feature.HomeFragment
+import uwanttolearn.astro.feature_home.HomeFragment
+import uwanttolearn.astro.main.adapter.HomeViewPagerAdapter
 
 /**
  * Created by waleed on 24/07/2017.
  */
 @Module
-class HomeActivityModule(val context: Context, val fm: FragmentManager) {
+class MainActivityModule(val context: Context, val fm: FragmentManager) {
 
     @Provides
     @ActivityScope
     fun pagerAdapter(context: Context, fm: FragmentManager): HomeViewPagerAdapter {
         return HomeViewPagerAdapter(context, fm, listOf<Pair<Fragment, Int>>(
                 Pair(HomeFragment(), R.string.home),
-                Pair(TVGuideFragment(), R.string.tv_guide),
-                Pair(FavouritesFragment(), R.string.favourite))
+                Pair(TVGuideFragment(), R.string.tv_guide))
         )
     }
 

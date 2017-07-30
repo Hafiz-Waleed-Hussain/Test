@@ -44,6 +44,14 @@ class ChannelsLocalDataSource : ChannelsDataSource {
         return realm?.where(ChannelInfo::class.java)?.findAllSorted(filedName, if (filedName.equals("isSave")) Sort.DESCENDING else Sort.ASCENDING)
     }
 
+    override fun getAllChannelNumbersCopy(): List<Int>? {
+        checkIsRealmOpen()
+
+        return realm?.copyFromRealm(realm?.where(ChannelInfo::class.java)?.findAllSorted("channelStbNumber", Sort.ASCENDING))
+                ?.map { it.channelId }
+    }
+
+
     override fun reset() {
         realm?.removeAllChangeListeners()
     }

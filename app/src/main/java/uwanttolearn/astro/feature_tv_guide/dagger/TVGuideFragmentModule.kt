@@ -1,4 +1,4 @@
-package uwanttolearn.astro.tv_guide.dagger
+package uwanttolearn.astro.feature_tv_guide.dagger
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,9 +9,9 @@ import uwanttolearn.astro.core.data.dagger.FragmentScope
 import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
 import uwanttolearn.astro.core.data.source.ChannelsDataSource
 import uwanttolearn.astro.favourites.TVGuideFragment
-import uwanttolearn.astro.tv_guide.TVGuideFragmentContract
-import uwanttolearn.astro.tv_guide.TVGuideFragmentViewModel
-import uwanttolearn.astro.tv_guide.adapter.TVGuideAdapter
+import uwanttolearn.astro.feature_tv_guide.TVGuideFragmentContract
+import uwanttolearn.astro.feature_tv_guide.TVGuideFragmentViewModel
+import uwanttolearn.astro.feature_tv_guide.adapter.TVGuideAdapter
 
 /**
  * Created by waleed on 29/07/2017.

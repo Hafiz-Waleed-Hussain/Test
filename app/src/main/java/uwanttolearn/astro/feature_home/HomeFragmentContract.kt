@@ -1,4 +1,4 @@
-package uwanttolearn.astro.home_feature
+package uwanttolearn.astro.feature_home
 
 import io.realm.RealmResults
 import uwanttolearn.astro.core.data.pojos.ChannelInfo

@@ -1,5 +1,9 @@
 package uwanttolearn.astro.favourites
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -11,14 +15,13 @@ import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
 import uwanttolearn.astro.core.abstracts.AstroFragment
 import uwanttolearn.astro.core.data.pojos.TVGuideChannel
-import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
+import uwanttolearn.astro.core.data.source.services.channel_data.ChannelsDataService
 import uwanttolearn.astro.databinding.FragmentTvGuideBinding
-import uwanttolearn.astro.tv_guide.TVGuideFragmentContract
-import uwanttolearn.astro.tv_guide.TVGuideFragmentViewModel
-import uwanttolearn.astro.tv_guide.adapter.TVGuideAdapter
-import uwanttolearn.astro.tv_guide.adapter.RowTVGuideViewModel
-import uwanttolearn.astro.tv_guide.dagger.DaggerTVGuideFragmentComponent
-import uwanttolearn.astro.tv_guide.dagger.TVGuideFragmentModule
+import uwanttolearn.astro.feature_tv_guide.TVGuideFragmentContract
+import uwanttolearn.astro.feature_tv_guide.TVGuideFragmentViewModel
+import uwanttolearn.astro.feature_tv_guide.adapter.TVGuideAdapter
+import uwanttolearn.astro.feature_tv_guide.dagger.DaggerTVGuideFragmentComponent
+import uwanttolearn.astro.feature_tv_guide.dagger.TVGuideFragmentModule
 import javax.inject.Inject
 
 /**
@@ -66,8 +69,25 @@ class TVGuideFragment : AstroFragment(), TVGuideFragmentContract {
 
     override fun addData(tvGuide: MutableList<TVGuideChannel>) =
             tvGuideAdapter.add(tvGuide)
+
     override fun downloadComplete() {
         tvGuideAdapter.downloadedComplete()
+    }
+
+    override fun registerForDownloadCompleteReceiver() {
+        context.registerReceiver(receiver, IntentFilter(ChannelsDataService.DOWNLOAD_COMPLETE))
+    }
+
+    override fun unregisterForDownloadCompleteReceiver() {
+
+        context.unregisterReceiver(receiver)
+    }
+
+
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            viewModel.dataDownloaded()
+        }
     }
 
 

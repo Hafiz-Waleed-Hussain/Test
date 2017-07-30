@@ -1,4 +1,4 @@
-package uwanttolearn.astro.tv_guide.adapter
+package uwanttolearn.astro.feature_tv_guide.adapter
 
 import android.databinding.BaseObservable
 import android.databinding.DataBindingUtil
@@ -15,7 +15,7 @@ import uwanttolearn.astro.core.data.pojos.TVGuideChannel
 import uwanttolearn.astro.core.data.pojos.TVGuideEvent
 import uwanttolearn.astro.databinding.RowLoaderBinding
 import uwanttolearn.astro.databinding.RowTvGuideBinding
-import uwanttolearn.astro.tv_guide.adapter.nested_adapter.TVGuideHorizontalNestedAdapter
+import uwanttolearn.astro.feature_tv_guide.adapter.nested_adapter.TVGuideHorizontalNestedAdapter
 
 /**
  * Created by waleed on 29/07/2017.

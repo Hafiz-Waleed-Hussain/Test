@@ -1,9 +1,9 @@
-package uwanttolearn.astro.home_feature.dagger
+package uwanttolearn.astro.feature_home.dagger
 
 import dagger.Component
 import uwanttolearn.astro.app.dagger.AppComponent
 import uwanttolearn.astro.core.data.dagger.FragmentScope
-import uwanttolearn.astro.home_feature.HomeFragment
+import uwanttolearn.astro.feature_home.HomeFragment
 
 /**
  * Created by waleed on 27/07/2017.

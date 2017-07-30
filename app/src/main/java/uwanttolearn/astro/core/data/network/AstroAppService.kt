@@ -13,11 +13,11 @@ import uwanttolearn.astro.core.data.json.TVGuide
 interface AstroAppService {
 
     // For scalability we should add pagination param but currently that is not the requirement :)
-    @GET("getChannelLista")
+    @GET("getChannelList")
     fun getAllChannels(): Observable<ChannelLists>
 
 
-    @GET("getChannelsa")
+    @GET("getChannels")
     fun getAllChannelsWithMetaData(): Observable<ChannelLists>
 
 

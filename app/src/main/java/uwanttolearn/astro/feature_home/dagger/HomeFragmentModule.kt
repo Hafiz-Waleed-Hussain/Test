@@ -1,6 +1,5 @@
-package uwanttolearn.astro.home_feature.dagger
+package uwanttolearn.astro.feature_home.dagger
 
-import android.content.Context
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -8,11 +7,10 @@ import dagger.Module
 import dagger.Provides
 import uwanttolearn.astro.core.data.ChannelsRepository
 import uwanttolearn.astro.core.data.dagger.FragmentScope
-import uwanttolearn.astro.core.data.dagger.IntentServiceScope
 import uwanttolearn.astro.core.data.source.ChannelsDataSource
-import uwanttolearn.astro.home_feature.HomeFragment
-import uwanttolearn.astro.home_feature.HomeViewModel
-import uwanttolearn.astro.home_feature.adapter.HomeAdapter
+import uwanttolearn.astro.feature_home.HomeFragment
+import uwanttolearn.astro.feature_home.HomeViewModel
+import uwanttolearn.astro.feature_home.adapter.HomeAdapter
 
 /**
  * Created by waleed on 27/07/2017.

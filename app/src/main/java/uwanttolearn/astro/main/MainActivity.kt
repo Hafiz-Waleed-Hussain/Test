@@ -1,26 +1,17 @@
-package uwanttolearn.astro.home
+package uwanttolearn.astro.main
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-import uwanttolearn.astro.core.abstracts.AstroActivity
-import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
-import timber.log.Timber
 import uwanttolearn.astro.R
 import uwanttolearn.astro.app.App
-import uwanttolearn.astro.core.data.pojos.TVGuideChannel
-import uwanttolearn.astro.core.data.pojos.TVGuideEvent
-import uwanttolearn.astro.home.dagger.DaggerHomeActivityComponent
-import uwanttolearn.astro.home.dagger.HomeActivityModule
-import uwanttolearn.astro.favourites.FavouritesFragment
-import uwanttolearn.astro.home.adapter.HomeViewPagerAdapter
-import uwanttolearn.astro.home_feature.HomeFragment
-import java.util.*
+import uwanttolearn.astro.core.abstracts.AstroActivity
+import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
+import uwanttolearn.astro.main.adapter.HomeViewPagerAdapter
+import uwanttolearn.astro.main.dagger.DaggerMainActivityComponent
+import uwanttolearn.astro.main.dagger.MainActivityModule
 import javax.inject.Inject
 
-class HomeActivity : AstroActivity() {
+class MainActivity : AstroActivity() {
 
     @Inject
     lateinit var astroRepository: AstroRepositoryDataSource
@@ -31,20 +22,19 @@ class HomeActivity : AstroActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DaggerHomeActivityComponent.builder()
+        DaggerMainActivityComponent.builder()
                 .appComponent(App.app.appComponent)
-                .homeActivityModule(HomeActivityModule(this, supportFragmentManager))
+                .mainActivityModule(MainActivityModule(this, supportFragmentManager))
                 .build().inject(this)
 
 
-        HomeActivity_view_pager.offscreenPageLimit = 3
+        HomeActivity_view_pager.offscreenPageLimit = 2
         HomeActivity_view_pager.adapter = pagerAdapter
 
         HomeActivity_bottom_navigation_view.setOnNavigationItemSelectedListener {
             HomeActivity_view_pager.setCurrentItem(when (it.itemId) {
                 R.id.home_tab -> 0
                 R.id.tv_guide_tab -> 1
-                R.id.favourite_tab -> 2
                 else -> 0
             }, true)
 

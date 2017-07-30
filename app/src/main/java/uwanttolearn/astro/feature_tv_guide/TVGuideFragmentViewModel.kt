@@ -1,10 +1,10 @@
-package uwanttolearn.astro.tv_guide
+package uwanttolearn.astro.feature_tv_guide
 
 import android.databinding.ObservableInt
 import android.view.View
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import uwanttolearn.astro.core.data.ChannelsRepository
+import io.realm.OrderedRealmCollectionChangeListener
 import uwanttolearn.astro.core.data.pojos.TVGuideChannel
 import uwanttolearn.astro.core.data.pojos.TVGuideEvent
 import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
@@ -23,16 +23,19 @@ class TVGuideFragmentViewModel(val astroRepository: AstroRepositoryDataSource,
     private var index = 0
     private var lastDownloadedIndex = 0
     private val PAGE_SZIE = 10
+    private var isReceiverRegistered = false
 
 
     fun onViewCreated() {
         channelRepository.open()
-        allChannelNumbersCopy = channelRepository.getAllChannelNumbersCopy()
-        loadMoreData()
+        startDataDownloading()
     }
+
 
     fun onDestroyView() {
         channelRepository.close()
+        if (isReceiverRegistered)
+            view.unregisterForDownloadCompleteReceiver()
     }
 
     fun loadMoreData() {
@@ -41,6 +44,7 @@ class TVGuideFragmentViewModel(val astroRepository: AstroRepositoryDataSource,
         if (previousIndex == index) {
             view.downloadComplete()
         } else {
+
             val list = allChannelNumbersCopy?.subList(previousIndex, index)
             list?.let {
 
@@ -77,6 +81,23 @@ class TVGuideFragmentViewModel(val astroRepository: AstroRepositoryDataSource,
                     index += PAGE_SZIE
                 else
                     index += it.size - 1 - index
+            }
+        }
+    }
+
+    fun dataDownloaded() {
+        startDataDownloading()
+        view.unregisterForDownloadCompleteReceiver()
+    }
+
+    private fun startDataDownloading() {
+        allChannelNumbersCopy = channelRepository.getAllChannelNumbersCopy()
+        allChannelNumbersCopy?.let {
+            if (it.size > 0)
+                loadMoreData()
+            else {
+                view.registerForDownloadCompleteReceiver()
+                isReceiverRegistered = true
             }
         }
     }

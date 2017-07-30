@@ -1,4 +1,4 @@
-package uwanttolearn.astro.home_feature.adapter
+package uwanttolearn.astro.feature_home.adapter
 
 import android.databinding.*
 import android.os.Handler
@@ -11,11 +11,8 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
-import io.realm.Realm
-import timber.log.Timber
 import uwanttolearn.astro.R
 import uwanttolearn.astro.core.data.pojos.ChannelInfo
-import uwanttolearn.astro.core.data.source.ChannelsDataSource
 import uwanttolearn.astro.databinding.RowHomeBinding
 
 /**

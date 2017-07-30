@@ -1,4 +1,4 @@
-package uwanttolearn.astro.home.adapter
+package uwanttolearn.astro.main.adapter
 
 import android.content.Context
 import android.support.v4.app.Fragment

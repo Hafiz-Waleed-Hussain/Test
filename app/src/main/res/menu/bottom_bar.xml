@@ -11,9 +11,4 @@
         android:enabled="true"
         android:title="@string/tv_guide"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/favourite_tab"
-        android:enabled="true"
-        android:title="@string/favourite"
-        app:showAsAction="ifRoom" />
 </menu>

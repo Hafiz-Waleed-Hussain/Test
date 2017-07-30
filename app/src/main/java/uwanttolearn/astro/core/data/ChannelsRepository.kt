@@ -45,6 +45,8 @@ class ChannelsRepository : ChannelsDataSource {
 
     override fun getAllChannelsInfo(fieldName: String) = localChannelDataSource.getAllChannelsInfo(fieldName)
 
+    override fun getAllChannelNumbersCopy(): List<Int>? = localChannelDataSource.getAllChannelNumbersCopy()
+
     override fun reset() {
         localChannelDataSource.reset()
     }

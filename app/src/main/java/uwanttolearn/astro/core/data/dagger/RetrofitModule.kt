@@ -11,6 +11,7 @@ import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by waleed on 24/07/2017.
@@ -35,6 +36,8 @@ class RetrofitModule(val baseUrl: String) {
     fun okHttpClient(loggingInterceptor: HttpLoggingInterceptor) =
             OkHttpClient.Builder()
                     .addInterceptor(loggingInterceptor)
+                    .readTimeout(5, TimeUnit.MINUTES)
+                    .connectTimeout(5, TimeUnit.MINUTES)
                     .build()
 
     @Provides
@@ -44,7 +47,7 @@ class RetrofitModule(val baseUrl: String) {
                 try {
                     var jsonObject = JSONObject(it.toString())
                     Timber.i(jsonObject.toString(4))
-                }catch (e:Exception){
+                } catch (e: Exception) {
                     Timber.i(it)
                 }
             }).setLevel(HttpLoggingInterceptor.Level.BODY)
