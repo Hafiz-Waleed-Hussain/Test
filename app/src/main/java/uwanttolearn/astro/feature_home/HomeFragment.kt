@@ -26,7 +26,7 @@ import javax.inject.Inject
  */
 class HomeFragment : AstroFragment(), HomeFragmentContract {
 
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
     @Inject
     lateinit var layoutManager: RecyclerView.LayoutManager

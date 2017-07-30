@@ -9,6 +9,7 @@ import uwanttolearn.astro.R
 import uwanttolearn.astro.core.data.dagger.ActivityScope
 import uwanttolearn.astro.core.data.source.AstroRepositoryDataSource
 import uwanttolearn.astro.favourites.FavouritesFragment
+import uwanttolearn.astro.favourites.TVGuideFragment
 import uwanttolearn.astro.home.HomeActivity
 import uwanttolearn.astro.home.adapter.HomeViewPagerAdapter
 import uwanttolearn.astro.home_feature.HomeFragment
@@ -24,7 +25,7 @@ class HomeActivityModule(val context: Context, val fm: FragmentManager) {
     fun pagerAdapter(context: Context, fm: FragmentManager): HomeViewPagerAdapter {
         return HomeViewPagerAdapter(context, fm, listOf<Pair<Fragment, Int>>(
                 Pair(HomeFragment(), R.string.home),
-                Pair(FavouritesFragment(), R.string.tv_guide),
+                Pair(TVGuideFragment(), R.string.tv_guide),
                 Pair(FavouritesFragment(), R.string.favourite))
         )
     }
